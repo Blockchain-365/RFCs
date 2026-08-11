@@ -104,7 +104,11 @@ Every incident review should produce shared defensive recommendations that AI pr
 * The failure and affected systems
 * The required defensive outcome
 * The minimum control and acceptable alternatives
-* A reproducible verification method
+* A reproducible verification method. Reproducibility is necessary and not sufficient: a method can be deterministic, repeatable, and still silent about the control it claims to exercise. Each method should also state:
+  * **Its own failure mode.** At least one way the method can return a passing or empty result without raising an error, and what the record shows when it does. A check that fails open and reports a plausible number is worse than no check, because a number now exists and someone will act on it.
+  * **Its noise floor, and the population that floor was measured over.** A floor obtained by repeating an identical input measures determinism rather than discrimination. Where the reported figure is a ratio, the method should state whether the party being measured can change the denominator.
+  * **The path through which the evidence was produced.** Where that path differs from the one production traffic takes, the divergence should be recorded as a limit on the claim rather than left out of the report.
+  * **How much of the corpus exercised the control under test.** Zero is a permitted value and a required disclosure, because "the control behaved as specified" and "no input ever reached the control" are indistinguishable from outside.
 * The evidence to retain, responsible owner and implementation deadline
 * Adoption, effectiveness and review metrics
 
